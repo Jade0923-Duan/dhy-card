@@ -63,7 +63,7 @@
 
     .stats {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 14px;
       margin-bottom: 18px;
     }
@@ -87,6 +87,28 @@
       font-weight: 700;
       color: var(--accent);
       letter-spacing: -0.02em;
+    }
+
+    .stat-wide {
+      grid-column: 1 / -1;
+      min-height: 118px;
+    }
+
+    .collection-stat {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .collection-missing {
+      flex: 0 0 auto;
+      padding: 12px 20px;
+      border-radius: 999px;
+      background: var(--gold-soft);
+      color: var(--sub);
+      font-size: 16px;
+      font-weight: 700;
     }
 
     .hero-top {
@@ -223,6 +245,14 @@
     .section-title {
       margin: 0 0 16px;
       font-size: 20px;
+      line-height: 1.35;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .panel-title {
+      font-size: 20px;
+      line-height: 1.35;
       color: var(--accent);
       font-weight: 700;
     }
@@ -242,8 +272,10 @@
 
     .mini-stat h3 {
       margin: 0 0 12px;
-      font-size: 18px;
+      font-size: 20px;
+      line-height: 1.35;
       color: var(--accent);
+      font-weight: 700;
     }
 
     .mini-stat-row {
@@ -262,11 +294,13 @@
     form {
       display: grid;
       gap: 12px;
+      min-width: 0;
     }
 
     .field {
       display: grid;
       gap: 7px;
+      min-width: 0;
     }
 
     .field-row {
@@ -292,6 +326,8 @@
     select,
     textarea {
       width: 100%;
+      min-width: 0;
+      max-width: 100%;
       border: 1px solid #dcc7a8;
       border-radius: 11px;
       padding: 11px 13px;
@@ -311,6 +347,30 @@
     textarea {
       min-height: 88px;
       resize: vertical;
+    }
+
+    input[type="date"] {
+      display: block;
+      -webkit-appearance: none;
+      appearance: none;
+      inline-size: 100%;
+      min-inline-size: 0;
+      max-inline-size: 100%;
+      height: 46px;
+      min-height: 46px;
+      line-height: 24px;
+      text-align: left;
+      box-sizing: border-box;
+      background-color: #fff;
+    }
+
+    input[type="date"]::-webkit-date-and-time-value {
+      min-height: 24px;
+      text-align: left;
+    }
+
+    input[type="date"]::-webkit-calendar-picker-indicator {
+      margin: 0;
     }
 
     .button-row,
@@ -535,6 +595,10 @@
       margin-top: 12px;
     }
 
+    .records-body {
+      padding-top: 18px;
+    }
+
     .pool-summary-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -542,11 +606,12 @@
     }
 
     .pool-card {
-      border: 1px solid var(--line);
+      border: 1px solid #ddc9ad;
       border-radius: 16px;
-      background: #fff;
+      background: #fffaf2;
       overflow: hidden;
       transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 6px 16px rgba(86, 60, 26, 0.035);
     }
 
     .pool-card[open] {
@@ -566,7 +631,7 @@
     }
 
     .pool-card > summary:hover {
-      background: #fffdf9;
+      background: #fdf3e5;
     }
 
     .pool-card-head {
@@ -575,6 +640,21 @@
       align-items: flex-start;
       gap: 12px;
       margin-bottom: 14px;
+    }
+
+    .pool-card-head > div:first-child {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+
+    .pool-card-head > .button-row {
+      flex: 0 0 auto;
+      flex-wrap: nowrap;
+      gap: 6px;
+    }
+
+    .pool-card-head .tag {
+      white-space: nowrap;
     }
 
     .pool-card h3 {
@@ -592,7 +672,7 @@
     .pool-metric {
       padding: 9px;
       border-radius: 10px;
-      background: #f8f5f0;
+      background: #f5eadc;
     }
 
     .pool-metric span {
@@ -629,7 +709,7 @@
     .pool-detail {
       padding: 14px 16px 16px;
       border-top: 1px solid var(--line);
-      background: #fcfaf6;
+      background: #faf1e5;
     }
 
     .pool-detail-title {
@@ -716,7 +796,6 @@
     }
 
     @media (max-width: 1080px) {
-      .stats,
       .sub-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
@@ -760,11 +839,71 @@
         margin-top: 14px;
       }
 
-      .stats,
       .sub-grid,
       .field-row,
       .filter-grid {
         grid-template-columns: 1fr;
+      }
+
+      .stats {
+        gap: 8px;
+      }
+
+      .stats .stat {
+        min-width: 0;
+        padding: 14px 10px;
+      }
+
+      .stats .stat-label {
+        font-size: 12px;
+      }
+
+      .stats .stat-value {
+        font-size: 24px;
+      }
+
+      #recordForm,
+      #recordForm .field,
+      #recordDate {
+        inline-size: 100%;
+        min-width: 0;
+        max-inline-size: 100%;
+        box-sizing: border-box;
+      }
+
+      #recordDate {
+        display: block;
+        height: 48px;
+        min-height: 48px;
+        padding: 11px 13px;
+        font-size: 16px;
+        line-height: 24px;
+      }
+
+      .pool-card-head {
+        gap: 8px;
+      }
+
+      .pool-card-head > .button-row {
+        gap: 4px;
+      }
+
+      .pool-card-head .tag {
+        padding: 5px 8px;
+        font-size: 11px;
+      }
+
+      .collection-stat {
+        align-items: center;
+        flex-direction: row;
+        gap: 8px;
+      }
+
+      .collection-missing {
+        margin-left: auto;
+        padding: 10px 12px;
+        font-size: 13px;
+        white-space: nowrap;
       }
 
       .filter-grid input {
@@ -803,7 +942,7 @@
             独立记录《代号鸢》卡池招募情况。选择卡池、填写抽数和抽到的密探，其余结果自动计算。
           </p>
         </div>
-        <div class="hero-badge">代号鸢专属 · 40 抽保底 · 本地保存</div>
+        <div class="hero-badge">代号鸢专属 · 40 抽保底 · 歪后必 UP</div>
       </div>
     </section>
 
@@ -818,15 +957,9 @@
         <form id="recordForm">
           <input type="hidden" id="recordId" />
 
-          <div class="field-row">
-            <div class="field">
-              <label for="recordDate">记录日期</label>
-              <input id="recordDate" type="date" required />
-            </div>
-            <div class="field">
-              <label for="poolTypeDisplay">卡池类型</label>
-              <input id="poolTypeDisplay" type="text" value="普池" readonly />
-            </div>
+          <div class="field">
+            <label for="recordDate">记录日期</label>
+            <input id="recordDate" type="date" required />
           </div>
 
           <div class="field">
@@ -856,10 +989,7 @@
             </select>
           </div>
 
-          <div class="field">
-            <label for="notes">备注（可选，不参与统计）</label>
-            <input id="notes" type="text" placeholder="例如：免费十连、单抽出金" />
-          </div>
+          <input id="notes" type="hidden" />
 
           <div class="button-row">
             <button type="submit" class="primary" id="submitButton">保存记录</button>
@@ -877,7 +1007,7 @@
 
     <details class="manager-panel" id="poolManagerPanel">
       <summary>
-        <span>卡池管理</span>
+        <span class="panel-title">卡池管理</span>
         <span class="small">新增或修改卡池与当期 UP</span>
       </summary>
       <div class="manager-body">
@@ -930,36 +1060,42 @@
       <div id="poolSummary"></div>
     </section>
 
+<details class="manager-panel" id="recordDetailsPanel">
+      <summary>
+        <span class="panel-title">招募明细</span>
+        <span class="small" id="recordCountText">0 条记录</span>
+      </summary>
+      <div class="manager-body records-body">
+        <div class="filter-grid">
+          <input id="searchInput" type="text" placeholder="搜索卡池或密探" />
+          <select id="poolFilter">
+            <option value="">全部卡池</option>
+          </select>
+          <select id="typeFilter">
+            <option value="">全部类型</option>
+            <option value="standard">普池</option>
+            <option value="limited">限定池</option>
+            <option value="rerun">限定复刻</option>
+            <option value="selfSelect">自选池</option>
+          </select>
+        </div>
+        <div id="recordList"></div>
+      </div>
+    </details>
+
     <section class="card">
       <div class="section-head">
         <div>
-          <h2 class="section-title">招募明细</h2>
-          <div class="small" id="recordCountText">0 条记录</div>
+          <h2 class="section-title">数据备份与清理</h2>
+          <div class="small">导出或导入 JSON 备份，也可以清空当前浏览器里的全部记录。</div>
         </div>
       </div>
-      <div class="filter-grid">
-        <input id="searchInput" type="text" placeholder="搜索卡池、密探或备注" />
-        <select id="poolFilter">
-          <option value="">全部卡池</option>
-        </select>
-        <select id="typeFilter">
-          <option value="">全部类型</option>
-          <option value="standard">普池</option>
-          <option value="limited">限定池</option>
-          <option value="rerun">限定复刻</option>
-          <option value="selfSelect">自选池</option>
-        </select>
-      </div>
-      <div id="recordList"></div>
-      <details class="data-panel">
-        <summary>数据备份与清理</summary>
-        <div class="button-row">
+      <div class="button-row">
           <button type="button" class="ghost" id="exportButton">导出数据</button>
           <button type="button" class="ghost" id="importButton">导入数据</button>
           <button type="button" class="danger" id="clearAllButton">清空全部</button>
           <input id="importFileInput" type="file" accept=".json,application/json" hidden />
-        </div>
-      </details>
+      </div>
     </section>
   </div>
 
@@ -967,9 +1103,11 @@
     const STORAGE_KEY = "codename_yuan_records_v1";
     const POOL_STORAGE_KEY = "codename_yuan_pools_v1";
     const POOL_CATALOG_VERSION_KEY = "codename_yuan_pool_catalog_version";
-    const POOL_CATALOG_VERSION = "2026-09-10-new-pool-v4";
+    const LAST_SELECTED_POOL_KEY = "codename_yuan_last_selected_pool_v1";
+    const POOL_CATALOG_VERSION = "2026-09-10-self-select-v5";
 
     const CHARACTERS = ["庞德","卢植","法正","陈群","蒯良","郭女王","司马徽","诸葛亮","曹丕","简雍","周忠","吕布","刘璋","庞羲","夏侯渊","钟繇","虞翻","张燕","程普","士燮","董白","张昭","蒯越","祢衡","黄盖","朱然","马腾","令狐茂","戏学","刘繇","安期","凌统","荀攸","满宠","诸葛瑾","诸葛诞","曹植","董奉","张邈","黄月英","孔融","张鲁","甄宓","甘宁","徐庶","张郃","张闿","太史慈","马超","程昱","张角","夏侯惇","张飞","蔡琰","庞统","荀彧","葛洪","周瑜","张仲景","张辽","王粲","张修","孙权","郭解","陆逊","干吉","华佗","吕蒙","鲁肃","郭嘉","孙尚香","贾诩","杨修","陈登·黍王","史子眇·赴烛","酆公珠","酆公玖","陈纪","陈应","孙静","孟获","张松","孙辅","司马孚","赵云","周泰","陈琳"].sort((a, b) => a.localeCompare(b, "zh-CN"));
+    const LAUNCH_CHARACTERS = ["王粲","张修","孙权","郭解","陆逊","干吉","华佗","吕蒙","鲁肃","郭嘉","孙尚香","贾诩","杨修"];
 
     const DEFAULT_POOL_CATALOG = [{"id":"standard","type":"standard","name":"绣衣天下","start":"","end":"","ups":[]},{"id":"2023-04-06","type":"limited","name":"弓剑江东","start":"2023-04-06","end":"2023-05-24","ups":["孙尚香","孙权"]},{"id":"2023-04-29","type":"limited","name":"鬼城之主","start":"2023-04-29","end":"2023-05-17","ups":["张修","干吉"]},{"id":"2023-06-08","type":"limited","name":"万物化光","start":"2023-06-08","end":"2023-07-19","ups":["张辽","张仲景"]},{"id":"2023-06-21","type":"limited","name":"山有扶苏","start":"2023-06-21","end":"2023-08-02","ups":["周瑜","葛洪"]},{"id":"2023-08-03","type":"limited","name":"王佐之才","start":"2023-08-03","end":"2023-09-13","ups":["荀彧","庞统"]},{"id":"2023-09-07","type":"limited","name":"诗画同律","start":"2023-09-07","end":"2023-10-08","ups":["蔡琰","张飞"]},{"id":"2023-09-28","type":"limited","name":"争光日月","start":"2023-09-28","end":"2023-11-08","ups":["夏侯惇","张角"]},{"id":"2023-11-09","type":"limited","name":"出奇无穷","start":"2023-11-09","end":"2023-12-06","ups":["马超","程昱"]},{"id":"2023-11-28","type":"limited","name":"天曲日术","start":"2023-11-28","end":"2024-01-08","ups":["张闿","太史慈"]},{"id":"2023-12-21","type":"limited","name":"绝艳惊鸿","start":"2023-12-21","end":"2024-01-24","ups":["徐庶","张郃"]},{"id":"2024-01-18","type":"limited","name":"击金鸣鼓","start":"2024-01-18","end":"2024-02-28","ups":["甘宁","甄宓"]},{"id":"2024-02-22","type":"limited","name":"闻斯行诸","start":"2024-02-22","end":"2024-03-20","ups":["孔融","张鲁"]},{"id":"2024-03-14","type":"limited","name":"天门启阖","start":"2024-03-14","end":"2024-04-24","ups":["张邈","黄月英"]},{"id":"2024-05-09","type":"limited","name":"谨司天英","start":"2024-05-09","end":"2024-06-19","ups":["曹植","董奉"]},{"id":"2024-05-25","type":"limited","name":"云雨滂润","start":"2024-05-25","end":"2024-06-28","ups":["诸葛瑾","诸葛诞"]},{"id":"2024-07-04","type":"limited","name":"二柄刑德","start":"2024-07-04","end":"2024-08-14","ups":["荀攸","满宠"]},{"id":"2024-08-29","type":"limited","name":"腾陵张胆","start":"2024-08-29","end":"2024-10-09","ups":["凌统","安期"]},{"id":"2024-09-12","type":"limited","name":"逐奔不远","start":"2024-09-12","end":"2024-10-16","ups":["戏学","刘繇"]},{"id":"2024-11-07","type":"limited","name":"一体盈虚","start":"2024-11-07","end":"2024-12-04","ups":["令狐茂","马腾"]},{"id":"2024-11-15","type":"limited","name":"搏鸷缚虬","start":"2024-11-15","end":"2024-12-29","ups":["朱然","黄盖"]},{"id":"2024-12-12","type":"limited","name":"黍梦焚舟","start":"2024-12-12","end":"2024-12-25","ups":["陈登·黍王","史子眇·赴烛"]},{"id":"2025-01-09","type":"limited","name":"风兴云蒸","start":"2025-01-09","end":"2025-02-19","ups":["蒯越","祢衡"]},{"id":"2025-02-20","type":"limited","name":"深水逐鹿","start":"2025-02-20","end":"2025-03-19","ups":["刘豹","张绣"]},{"id":"2025-03-13","type":"limited","name":"白日昭只","start":"2025-03-13","end":"2025-04-23","ups":["董白","张昭"]},{"id":"2025-04-30","type":"limited","name":"隧象衔尾","start":"2025-04-30","end":"2025-06-11","ups":["士燮","程普"]},{"id":"2025-05-29","type":"limited","name":"暮燕翻雷","start":"2025-05-29","end":"2025-06-25","ups":["虞翻","张燕"]},{"id":"2025-06-26","type":"limited","name":"渊鼓锽钟","start":"2025-06-26","end":"2025-08-06","ups":["夏侯渊","钟繇"]},{"id":"2025-08-21","type":"limited","name":"劫烬灰飞","start":"2025-08-21","end":"2025-10-01","ups":["刘璋","庞羲"]},{"id":"2025-09-11","type":"limited","name":"以奉嘉觞","start":"2025-09-11","end":"2025-10-08","ups":["吕布","周忠"]},{"id":"2025-10-16","type":"limited","name":"大和丕应","start":"2025-10-16","end":"2025-11-26","ups":["曹丕","简雍"]},{"id":"2025-11-06","type":"limited","name":"英徽弥亮","start":"2025-11-06","end":"2025-12-03","ups":["诸葛亮","司马徽"]},{"id":"2025-12-11","type":"limited","name":"动静非我","start":"2025-12-11","end":"2026-01-21","ups":["蒯良","郭女王"]},{"id":"2025-12-23","type":"limited","name":"持心离欲","start":"2025-12-23","end":"2026-01-19","ups":["法正","陈群"]},{"id":"2026-02-05","type":"limited","name":"珠玑琼玖","start":"2026-02-05","end":"2026-03-18","ups":["酆公珠","酆公玖"]},{"id":"2026-02-26","type":"limited","name":"坐令干霄","start":"2026-02-26","end":"2026-03-25","ups":["庞德","卢植"]},{"id":"2026-03-30","type":"limited","name":"东阁待贤","start":"2026-03-30","end":"2026-04-28","ups":[],"selfSelect":true},{"id":"2026-04-02","type":"limited","name":"影迹陈陈","start":"2026-04-02","end":"2026-05-13","ups":["陈纪","陈应"]},{"id":"2026-05-21","type":"limited","name":"含明隐迹","start":"2026-05-21","end":"2026-06-17","ups":["孙静","孟获"]},{"id":"2026-05-28","type":"limited","name":"松桥辅德","start":"2026-05-28","end":"2026-07-08","ups":["张松","孙辅"]},{"id":"2026-07-09","type":"limited","name":"奉天华盖","start":"2026-07-09","end":"2026-07-22","ups":["董奉","黄盖"]},{"id":"2026-07-23","type":"limited","name":"诚之云孚","start":"2026-07-23","end":"2026-09-02","ups":["司马孚","赵云"]},{"id":"2026-07-23-special","type":"limited","name":"却月凌风","start":"2026-07-23","end":"2026-08-05","ups":["黄月英","凌统"]}];
 
@@ -992,7 +1130,7 @@
       {"id":"2025-01-23","type":"limited","name":"火中取梦","start":"2025-01-23","end":"2025-02-05","ups":["张郃","甄宓"],"isRerun":true},
       {"id":"2025-06-12","type":"limited","name":"金相玉质","start":"2025-06-12","end":"2025-06-25","ups":["孔融","黄月英"],"isRerun":true},
       {"id":"2025-09-11","type":"limited","name":"以奉嘉觞","start":"2025-09-11","end":"2025-10-08","ups":["周忠","吕布"]},
-      {"id":"2025-09-30","type":"limited","name":"游说贤士","start":"2025-09-30","end":"2025-10-29","ups":[],"selfSelect":true},
+      {"id":"2025-09-30","type":"limited","name":"求贤访士","start":"2025-09-30","end":"2025-10-29","ups":[],"selfSelect":true,"selfSelectUntilId":"2025-08-21","selfSelectLabel":"开服至劫烬灰飞"},
       {"id":"2025-10-16","type":"limited","name":"大和丕应","start":"2025-10-16","end":"2025-11-26","ups":["简雍","曹丕"]},
       {"id":"2025-12-11","type":"limited","name":"动静非我","start":"2025-12-11","end":"2026-01-22","ups":["郭女王","蒯良"]},
       {"id":"2025-12-23","type":"limited","name":"持心离欲","start":"2025-12-23","end":"2026-01-19","ups":["陈群","法正"]},
@@ -1000,6 +1138,7 @@
       {"id":"2026-01-15-b","type":"limited","name":"洪匀玄机","start":"2026-01-15","end":"2026-01-28","ups":["葛洪","张仲景"],"isRerun":true},
       {"id":"2026-07-09","type":"limited","name":"奉天华盖","start":"2026-07-09","end":"2026-07-22","ups":["董奉","黄盖"],"isRerun":true},
       {"id":"2026-07-23-special","type":"limited","name":"却月凌风","start":"2026-07-23","end":"2026-08-05","ups":["黄月英","凌统"],"isRerun":true},
+      {"id":"2026-03-30","type":"limited","name":"东阁待贤","start":"2026-03-30","end":"2026-04-28","ups":[],"selfSelect":true,"selfSelectUntilId":"2026-02-26","selfSelectLabel":"开服至坐令干霄"},
       {"id":"2026-09-10","type":"limited","name":"周廟之璋","start":"2026-09-10","end":"2026-10-07","ups":["周泰","陈琳"]}
     ];
 
@@ -1017,7 +1156,6 @@
     const form = document.getElementById("recordForm");
     const recordIdInput = document.getElementById("recordId");
     const recordDateInput = document.getElementById("recordDate");
-    const poolTypeDisplay = document.getElementById("poolTypeDisplay");
     const poolSelect = document.getElementById("poolSelect");
     const selectedPoolInfo = document.getElementById("selectedPoolInfo");
     const pullCountInput = document.getElementById("pullCount");
@@ -1072,6 +1210,7 @@
       }
       return (
         POOL_CATALOG.find((pool) => pool.name === item.poolName) ||
+        (item.poolName === "游说贤士" ? getPoolById("2025-09-30") : null) ||
         (item.poolName === "绣衣天下" ? POOL_CATALOG[0] : null)
       );
     }
@@ -1112,6 +1251,8 @@
         end: String(pool.end || ""),
         ups: Array.isArray(pool.ups) ? pool.ups.map((name) => String(name).trim()).filter(Boolean) : [],
         selfSelect: Boolean(pool.selfSelect),
+        selfSelectUntilId: String(pool.selfSelectUntilId || ""),
+        selfSelectLabel: String(pool.selfSelectLabel || ""),
         isRerun: Boolean(pool.isRerun),
       };
     }
@@ -1136,6 +1277,26 @@
       if (pool?.selfSelect) return "tag-select";
       if (pool?.isRerun) return "tag-rerun";
       return "tag-limited";
+    }
+
+    function getAllAvailableCharacters() {
+      return Array.from(
+        new Set([...CHARACTERS, ...POOL_CATALOG.flatMap((pool) => pool.ups)])
+      ).sort((a, b) => a.localeCompare(b, "zh-CN"));
+    }
+
+    function getSelfSelectCharacters(pool) {
+      if (!pool?.selfSelectUntilId) return getAllAvailableCharacters();
+      const cutoffPool = POOL_CATALOG.find((item) => item.id === pool.selfSelectUntilId);
+      if (!cutoffPool) return getAllAvailableCharacters();
+      return Array.from(
+        new Set([
+          ...LAUNCH_CHARACTERS,
+          ...POOL_CATALOG
+            .filter((item) => item.type === "limited" && item.start && item.start <= cutoffPool.start)
+            .flatMap((item) => item.ups),
+        ])
+      ).sort((a, b) => a.localeCompare(b, "zh-CN"));
     }
 
     function mergeScheduleUpdate(catalog) {
@@ -1252,41 +1413,46 @@
       const currentValue = poolSelect.value;
       const sortedPools = getPoolsForSelector();
       poolSelect.innerHTML = sortedPools.map((pool) => {
-        const dateLabel = pool.start ? `${pool.start} 至 ${pool.end}` : "常驻";
-        const upLabel = pool.type === "limited" ? `｜${getPoolUpLabel(pool)}` : "";
-        return `<option value="${pool.id}">[${getPoolCategoryLabel(pool)}] ${escapeHtml(pool.name)}｜${dateLabel}${escapeHtml(upLabel)}</option>`;
+        const upLabel = pool.type === "standard" ? "全部绝密密探" : getPoolUpLabel(pool);
+        const optionLabel = `【${getPoolCategoryLabel(pool)}】${pool.name} | ${upLabel}`;
+        return `<option value="${pool.id}">${escapeHtml(optionLabel)}</option>`;
       }).join("");
       poolSelect.value = POOL_CATALOG.some((pool) => pool.id === currentValue) ? currentValue : "standard";
     }
 
     function populateCharacterOptions(selectedValue = "") {
-      const poolUps = POOL_CATALOG.flatMap((pool) => pool.ups);
-      const allCharacters = Array.from(new Set([...CHARACTERS, ...poolUps])).sort((a, b) =>
-        a.localeCompare(b, "zh-CN")
-      );
+      const allCharacters = getAllAvailableCharacters();
       const selectedPool = getPoolById(poolSelect.value);
+      const selectableCharacters = selectedPool?.selfSelect
+        ? getSelfSelectCharacters(selectedPool)
+        : allCharacters;
       const currentUps =
         selectedPool?.type === "limited"
           ? selectedPool.selfSelect
-            ? allCharacters
+            ? selectableCharacters
             : selectedPool.ups
           : [];
-      const otherCharacters = allCharacters.filter((name) => !currentUps.includes(name));
+      const otherCharacters = selectedPool?.selfSelect
+        ? []
+        : allCharacters.filter((name) => !currentUps.includes(name));
       const upOptions = currentUps.length
         ? `<optgroup label="${selectedPool?.selfSelect ? "可自选密探" : "当期 UP（优先）"}">${currentUps
             .map((name) => `<option value="${escapeHtml(name)}">★ ${escapeHtml(name)}</option>`)
             .join("")}</optgroup>`
         : "";
+      const otherOptions = otherCharacters.length
+        ? `<optgroup label="${currentUps.length ? "其他密探" : "全部密探"}">
+            ${otherCharacters
+              .map((name) => `<option value="${escapeHtml(name)}">${escapeHtml(name)}</option>`)
+              .join("")}
+          </optgroup>`
+        : "";
       characterNameInput.innerHTML = `
         <option value="">未出绝密 / 仅累计抽数</option>
         ${upOptions}
-        <optgroup label="${currentUps.length ? "其他密探" : "全部密探"}">
-          ${otherCharacters
-            .map((name) => `<option value="${escapeHtml(name)}">${escapeHtml(name)}</option>`)
-            .join("")}
-        </optgroup>
+        ${otherOptions}
       `;
-      characterNameInput.value = allCharacters.includes(selectedValue) ? selectedValue : "";
+      characterNameInput.value = selectableCharacters.includes(selectedValue) ? selectedValue : "";
     }
 
     function determineResultType(pool, characterName) {
@@ -1309,7 +1475,6 @@
       const pityProgress = poolState?.pityProgress || 0;
       const toNextPity = poolState?.toNextPity ?? 40;
       const progressPercent = Math.min(100, (pityProgress / 40) * 100);
-      poolTypeDisplay.value = getPoolCategoryLabel(pool);
       const categoryTag = `<span class="tag ${getPoolCategoryClass(pool)}">${getPoolCategoryLabel(pool)}</span>`;
       const guaranteeTag =
         pool.type === "standard"
@@ -1518,43 +1683,47 @@
 
     function renderOverallStats() {
       const summary = summarize(records);
-      const items = [
-        { label: "总招募次数", value: summary.totalPulls },
-        { label: "总绝密个数", value: summary.totalGold },
-        { label: "平均出绝密次数", value: summary.avgGoldPulls },
-        { label: "记录中的卡池数", value: summary.totalPools },
-      ];
+      const allCharacters = getAllAvailableCharacters();
+      const allCharacterSet = new Set(allCharacters);
+      const collectedCharacters = new Set(
+        records
+          .filter((item) => item.characterName && isGold(item.resultType) && allCharacterSet.has(item.characterName))
+          .map((item) => item.characterName)
+      );
+      const missingCount = Math.max(0, allCharacters.length - collectedCharacters.size);
+      const mostCommonName = summary.mostCommonCharacter
+        ? escapeHtml(summary.mostCommonCharacter[0])
+        : "-";
+      const mostCommonNote = summary.mostCommonCharacter
+        ? `<div class="small">共抽出 ${summary.mostCommonCharacter[1]} 个</div>`
+        : "";
 
-      overallStats.innerHTML = items
-        .map(
-          (item) => `
-            <div class="stat">
-              <div class="stat-label">${item.label}</div>
-              <div class="stat-value">${item.value}</div>
-            </div>
-          `
-        )
-        .join("");
-
-      if (summary.mostCommonCharacter) {
-        overallStats.innerHTML += `
-          <div class="stat">
-            <div class="stat-label">抽出次数最多的绝密密探</div>
-            <div class="stat-value" style="font-size:24px;">${escapeHtml(summary.mostCommonCharacter[0])}</div>
-            <div class="small">共抽出 ${summary.mostCommonCharacter[1]} 个</div>
+      overallStats.innerHTML = `
+        <div class="stat">
+          <div class="stat-label">总招募次数</div>
+          <div class="stat-value">${summary.totalPulls}</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">总绝密密探数</div>
+          <div class="stat-value">${summary.totalGold}</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">平均出绝密次数</div>
+          <div class="stat-value">${summary.avgGoldPulls}</div>
+        </div>
+        <div class="stat stat-wide">
+          <div class="stat-label">抽出次数最多的绝密密探</div>
+          <div class="stat-value">${mostCommonName}</div>
+          ${mostCommonNote}
+        </div>
+        <div class="stat stat-wide collection-stat">
+          <div>
+            <div class="stat-label">当前绝密图鉴收集进度</div>
+            <div class="stat-value">${collectedCharacters.size} / ${allCharacters.length}</div>
           </div>
-        `;
-      }
-
-      if (summary.mostCommonLimitedUp) {
-        overallStats.innerHTML += `
-          <div class="stat">
-            <div class="stat-label">抽中次数最多的当期 UP</div>
-            <div class="stat-value" style="font-size:24px;">${escapeHtml(summary.mostCommonLimitedUp[0])}</div>
-            <div class="small">作为当期 UP 抽到 ${summary.mostCommonLimitedUp[1]} 次</div>
-          </div>
-        `;
-      }
+          <div class="collection-missing">还缺 ${missingCount} 名绝密密探</div>
+        </div>
+      `;
     }
 
     function renderMiniStats() {
@@ -1713,7 +1882,6 @@
                     </div>
                     <div class="small">
                       ${escapeHtml(record.date)}
-                      ${record.notes ? ` · ${escapeHtml(record.notes)}` : ""}
                     </div>
                   </div>
                   <div class="pull-entry-count">${record.pullCount}<span>抽</span></div>
@@ -1817,7 +1985,7 @@
             (selectedType === "limited" && item.poolType === "limited" && !itemPool?.isRerun && !itemPool?.selfSelect) ||
             (selectedType === "rerun" && itemPool?.isRerun) ||
             (selectedType === "selfSelect" && itemPool?.selfSelect);
-          const target = `${item.poolName} ${item.characterName} ${item.notes} ${(item.upCharacters || []).join(" ")}`.toLowerCase();
+          const target = `${item.poolName} ${item.characterName} ${(item.upCharacters || []).join(" ")}`.toLowerCase();
           const matchesKeyword = !keyword || target.includes(keyword);
           return matchesPool && matchesType && matchesKeyword;
         })
@@ -1853,7 +2021,6 @@
                 <th>抽数</th>
                 <th>结果</th>
                 <th>本次出的密探</th>
-                <th>备注</th>
                 <th>操作</th>
               </tr>
             </thead>
@@ -1880,7 +2047,6 @@
                       <td>${item.pullCount}</td>
                       <td>${resultLabel(item)}</td>
                       <td>${item.characterName ? escapeHtml(item.characterName) : '<span class="small">未填写</span>'}</td>
-                      <td>${item.notes ? escapeHtml(item.notes) : '<span class="small">无</span>'}</td>
                       <td>
                         <div class="button-row">
                           <button type="button" class="ghost" onclick="editRecord('${item.id}')">编辑</button>
@@ -1897,10 +2063,23 @@
       `;
     }
 
+    function getPreferredPoolId() {
+      const rememberedPoolId = localStorage.getItem(LAST_SELECTED_POOL_KEY);
+      if (rememberedPoolId && getPoolById(rememberedPoolId)) return rememberedPoolId;
+      const latestRecord = [...records]
+        .filter((item) => getPoolById(item.poolId))
+        .sort(
+          (a, b) =>
+            new Date(b.updatedAt || b.createdAt).getTime() -
+            new Date(a.updatedAt || a.createdAt).getTime()
+        )[0];
+      return latestRecord?.poolId || "standard";
+    }
+
     function resetForm() {
       recordIdInput.value = "";
       recordDateInput.value = todayString();
-      poolSelect.value = "standard";
+      poolSelect.value = getPreferredPoolId();
       pullCountInput.value = "";
       populateCharacterOptions("");
       notesInput.value = "";
@@ -1950,6 +2129,7 @@
         records.push(payload);
       }
 
+      localStorage.setItem(LAST_SELECTED_POOL_KEY, pool.id);
       rerender();
       resetForm();
     });
